@@ -1,5 +1,5 @@
-const { createBrowserRouter } = require("react-router");
-const { default: Root } = require("../Root/Root");
+import { createBrowserRouter } from "react-router";
+import Root from "../Root/Root";
 
 const router = createBrowserRouter([
     {

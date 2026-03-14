@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Navbar = () => {
     return (
         <div>
-            <h1>Navbar</h1>
+           <Link>Home</Link>
         </div>
     );
 };

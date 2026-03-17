@@ -14,7 +14,7 @@ const LogIn = () => {
         signInWithPopup(auth,googleProvider)
         .then(result=>{
             setUsers(result.user)
-            // console.log(result.user.displayName);
+            console.log(result.user);
 
         }).catch(error=>{
             console.log(error);
@@ -29,22 +29,28 @@ const handleSingOut = ()=>{
     signOut(auth)
     .then(()=>{
         console.log('successfully sing out')
+          setUsers(null)
     })
     .catch(error=>{
         console.log(error);
     })
+  
 }
     return (
         <div>
             <h1>Log In </h1>
-            <button onClick={handleGoogle}>Sing Up With Google</button>
+           
           {users &&
               <div>
                 <h1>name:{users?.displayName}</h1>
                 <h1>email:{users.email}</h1>
+                <img src={users.photoURL} alt="" />
             </div>
           }
-            <button onClick={handleSingOut}>sing Out</button>
+          {
+            users?  <button onClick={handleSingOut}>sing Out</button>: <button onClick={handleGoogle}>Sing Up With Google</button>
+          }
+           
         </div>
     );
 };

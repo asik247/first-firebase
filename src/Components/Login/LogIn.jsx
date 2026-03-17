@@ -29,7 +29,20 @@ const LogIn = () => {
         console.log('clikde gutbt bnt');
         signInWithPopup(auth, githubProvider)
             .then(res => {
-                setUsers(res.user)
+                // setUsers(res.user)
+                // console.log(res.user);
+
+                const loginUser = res.user;
+                if(!loginUser.email){
+                    if(loginUser.providerData){
+                        const gitProvider = loginUser.providerData.find(p=>p.providerId==='github.com');
+                        if(gitProvider && gitProvider.email){
+                            loginUser.email = gitProvider.email
+                        }
+                    }
+                }
+                // console.log(loginUser);
+                setUsers(loginUser)
             }).catch(error => {
                 console.log(error);
             })
